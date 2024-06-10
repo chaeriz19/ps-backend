@@ -1,0 +1,18 @@
+
+/api/login:
+
+Input: 
+email, password
+
+Response: 
+{
+    "token": "1|lWoSDw0Q3u9kBV91qWWXfc5J79zJYYZM2FDCYH1mae9f6240",
+    "user": {
+        "id": 2,
+        "name": "Bailey McClure MD",
+        "email": "pwillms@example.net",
+        "email_verified_at": "2024-06-10T09:01:03.000000Z",
+        "created_at": "2024-06-10T09:01:03.000000Z",
+        "updated_at": "2024-06-10T09:01:03.000000Z"
+    }
+}
