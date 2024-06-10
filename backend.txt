@@ -16,3 +16,26 @@ Response:
         "updated_at": "2024-06-10T09:01:03.000000Z"
     }
 }
+
+GET function to get ALL the movies currently in the database
+/api/movies/all: 
+
+Input:
+/
+
+Response:
+
+{
+        "id": 1,
+        "title": "Tenetur quod error illo beatae rerum eligendi.",
+        "movie_type": "Action",
+        "year": 1979,
+        "minutes": 141,
+        "created_at": "2024-06-10T10:33:57.000000Z",
+        "updated_at": "2024-06-10T10:33:57.000000Z"
+},
+{
+        "id": 2,
+        "title": "Repellat delectus non natus hic qui quo.",
+        "movie_type": "Comedy",
+etc..

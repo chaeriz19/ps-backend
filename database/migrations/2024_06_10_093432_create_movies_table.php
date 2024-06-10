@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedSmallInteger('year');
             $table->unsignedSmallInteger('minutes');
 
-
             $table->timestamps();
         });
     }
