@@ -22,8 +22,16 @@ class AuthController extends Controller
             // check authorisation
             $user = Auth::user();
 
-            // Create access token to authorize
-            $token = $user->createToken('Access Token')->plainTextToken;
+            // Create access token to authorize if user doesnt have one
+            // if user has a authentication token, delete the current one and refresh
+            if ($user->tokens()->count() > 0) {
+                $user->tokens()->delete();
+                $token = $user->createToken('Access Token')->plainTextToken;
+            } else {
+                
+                // create new token
+                $token = $user->createToken('Access Token')->plainTextToken;
+            }
 
             return response()->json([
 
