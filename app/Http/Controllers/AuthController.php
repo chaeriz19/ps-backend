@@ -12,7 +12,21 @@ class AuthController extends Controller
         $data = $request->only('email', 'password');
 
         if (Auth::attempt($data)) {
+
             // check authorisation
+            $user = Auth::user();
+
+            // Create access token to authorize
+            $token = $user->createToken('Access Token')->plainTextToken;
+
+            return response()->json([
+                'token' => $token,
+                'user' => $user,
+            ]);
+
         }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
+
     }
 }
