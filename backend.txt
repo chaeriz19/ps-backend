@@ -1,41 +1,80 @@
 
+POST function to pass email and password and return authentication token
 /api/login:
 
-Input: 
-email, password
+	Input: 
+	email, password
 
-Response: 
-{
-    "token": "1|lWoSDw0Q3u9kBV91qWWXfc5J79zJYYZM2FDCYH1mae9f6240",
-    "user": {
-        "id": 2,
-        "name": "Bailey McClure MD",
-        "email": "pwillms@example.net",
-        "email_verified_at": "2024-06-10T09:01:03.000000Z",
-        "created_at": "2024-06-10T09:01:03.000000Z",
-        "updated_at": "2024-06-10T09:01:03.000000Z"
-    }
-}
+	Response: 
+	{
+	    "token": "1|lWoSDw0Q3u9kBV91qWWXfc5J79zJYYZM2FDCYH1mae9f6240",
+	    "user": {
+	        "id": 2,
+	        "name": "Bailey McClure MD",
+	        "email": "pwillms@example.net",
+	        "email_verified_at": "2024-06-10T09:01:03.000000Z",
+	        "created_at": "2024-06-10T09:01:03.000000Z",
+	        "updated_at": "2024-06-10T09:01:03.000000Z"
+	    }
+	}
 
 GET function to get ALL the movies currently in the database
 /api/movies/all: 
 
-Input:
-/
+	Input:
+	/
+	
+	Response:
+	{
+		"id": 1,
+		"title": "Tenetur quod error illo beatae rerum eligendi.",
+		"movie_type": "Action",
+		"year": 1979,
+		"minutes": 141,
+		"created_at": "2024-06-10T10:33:57.000000Z",
+		"updated_at": "2024-06-10T10:33:57.000000Z"
+	},
+	{
+		"id": 2,
+		"title": "Repellat delectus non natus hic qui quo.",
+		"movie_type": "Comedy",
+	etc..
+	
+POST function to fetch a certain page out of the backend, with this you can combine the fetched arrays in the frontend
+and make a infinity scroll
+/api/movies/page
 
-Response:
+	Input:
+	page
 
-{
-        "id": 1,
-        "title": "Tenetur quod error illo beatae rerum eligendi.",
-        "movie_type": "Action",
-        "year": 1979,
-        "minutes": 141,
-        "created_at": "2024-06-10T10:33:57.000000Z",
-        "updated_at": "2024-06-10T10:33:57.000000Z"
-},
-{
-        "id": 2,
-        "title": "Repellat delectus non natus hic qui quo.",
-        "movie_type": "Comedy",
-etc..
+	Response:
+	{
+		"id": 1,
+		"title": "Tenetur quod error illo beatae rerum eligendi.",
+		"movie_type": "Action",
+		"year": 1979,
+		"minutes": 141,
+		"created_at": "2024-06-10T10:33:57.000000Z",
+		"updated_at": "2024-06-10T10:33:57.000000Z"
+	}	,
+	{
+		"id": 2,
+		"title": "Repellat delectus non natus hic qui quo.",
+		"movie_type": "Comedy",
+	etc..
+
+GET function to check authorization token validation and return user
+/api/user
+
+	Input: 
+	token
+
+	Response: 
+	{
+		"id": 2,
+		"name": "Bailey McClure MD",
+		"email": "pwillms@example.net",
+		"email_verified_at": "2024-06-10T09:01:03.000000Z",
+		"created_at": "2024-06-10T09:01:03.000000Z",
+		"updated_at": "2024-06-10T09:01:03.000000Z"
+	}
