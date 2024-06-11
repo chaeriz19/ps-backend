@@ -19,7 +19,7 @@
             // the request
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:255',
-                'email' => 'required|email:rfc,dns',
+                'email' => 'required|email:rfc,dns|max:255',
                 'password' => 'required|max:255',
             ]);
             
@@ -28,10 +28,7 @@
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false, 
-
-                    // 401 
-                    'message' => 'Error: name email or password cant be validated'],
-                    401);
+                    'message' => $validator->errors()->first()], 422);
             }
 
             $user = User::create([

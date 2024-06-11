@@ -9,10 +9,8 @@ use App\Http\Controllers\AuthController;
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
 Route::post('/user/register', [AuthController::class, 'register'])->name('user.register');
 
-// protected routes
-Route::middleware(['auth:sanctum'])->group(function() {
-    
-    // protected movie data routes
+
+Route::group(['middleware' => ['auth']], function() {
     Route::get('/movies/all', [MovieController::class, 'all'])->name('movies.all');
     Route::get('/movies/latest', [MovieController::class, 'latest'])->name('movies.latest');
     Route::post('/movies/page', [MovieController::class, 'page_control'])->name('movies.page_control');
