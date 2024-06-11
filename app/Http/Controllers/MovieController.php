@@ -21,6 +21,16 @@ class MovieController extends Controller
         return response()->json($data);
     }
 
+    // search function
+    // return everything that starts with the term passed via request
+    public function search(Request $request) {
+        $request->validate([
+            'search' => 'required|max:50'
+        ]);
+        $term = $request->search;
+        return response()->json(['data'=> Movie::where('title', 'LIKE', "$term%")->get(), 'term'=> $request->search]);
+    }
+
     // for infinity scroll, je kan page nummer meegeven en de arrays combineren 
     // in de frontend
     // route: api/movies/page

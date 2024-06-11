@@ -16,7 +16,6 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/movies/latest', [MovieController::class, 'latest'])->name('movies.latest');
     Route::post('/movies/page', [MovieController::class, 'page_control'])->name('movies.page_control');
     Route::post('/movies/search', [MovieController::class, 'search'])->name('movies.search');
-    
 });
 
 
