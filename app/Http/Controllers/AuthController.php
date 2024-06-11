@@ -23,10 +23,14 @@
                 'password' => 'required|max:255',
             ]);
             
+            // check if everything in request is valid
+            // when validator fails send negative success message
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false, 
-                    'message' => 'Error: email, password or name are in invalid format'],
+
+                    // 401 
+                    'message' => 'Error: name email or password cant be validated'],
                     401);
             }
 
