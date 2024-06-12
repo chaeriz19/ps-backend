@@ -96,4 +96,15 @@ class MovieController extends Controller
         ]);
     }
 
+    public function get_favorites(request $request) {
+        $request->validate([
+            'user_id' =>'required',
+        ]);
+
+        $user = User::find($request->get('user_id'));
+        $favorites = $user->favorites;
+
+        return response()->json(
+            $favorites);
+    }
 }
