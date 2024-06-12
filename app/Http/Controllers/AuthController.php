@@ -96,10 +96,5 @@ class AuthController extends Controller
                 'message' => 'User not found',
             ], 404);
         }
-
-        return response()->json([
-            'success' => false,
-            'message' => 'User not found',
-        ], 404);
     }
 }
