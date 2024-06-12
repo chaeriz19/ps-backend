@@ -62,8 +62,38 @@ class MovieController extends Controller
         $user = User::find($request->get('user_id'));
         $movie = Movie::find($request->get('movie_id'));  
 
+        // check eerst of die al gafavorite is, zoja niet meer doen
+
         $user->favorites()->attach($movie);
 
+        // send positive json response
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User favorited movie successfully',
+        ]);
+
+    }
+
+    public function remove_favorite(request $request) {
+        $request->validate([
+            'user_id' =>'required',
+            'movie_id' =>'required',
+        ]);
+
+        $user = User::find($request->get('user_id'));
+        $movie = Movie::find($request->get('movie_id'));  
+
+        // check eerst of die al gafavorite is, zoja niet meer doen
+
+        $user->favorites()->detach($movie);
+
+        // send positive json response
+
+        return response()->json([
+           'success' => true,
+           'message' => 'User unfavorited movie successfully',
+        ]);
     }
 
 }
