@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function favorites() {
+        return $this->belongsToMany(Movie::class, 'favorites')->withTimestamps();
+    }
+
     protected $fillable = [
         'name',
         'email',
