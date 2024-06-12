@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2024 at 01:06 PM
+-- Generation Time: Jun 12, 2024 at 01:46 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -40,6 +40,20 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `favorite`
+--
+
+CREATE TABLE `favorite` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `movie_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -58,7 +72,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2024_06_10_093432_create_movies_table', 2);
+(5, '2024_06_10_093432_create_movies_table', 2),
+(6, '2024_06_12_114300_create_favorite_table', 3);
 
 -- --------------------------------------------------------
 
@@ -168,7 +183,8 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(6, 'App\\Models\\User', 2, 'Access Token', 'c412233339799e6b2f865c9fc372efb2a07714ea623e1615a0e33bfb368f9309', '[\"*\"]', '2024-06-11 09:05:25', NULL, '2024-06-11 08:49:12', '2024-06-11 09:05:25');
+(6, 'App\\Models\\User', 2, 'Access Token', 'c412233339799e6b2f865c9fc372efb2a07714ea623e1615a0e33bfb368f9309', '[\"*\"]', '2024-06-11 09:11:39', NULL, '2024-06-11 08:49:12', '2024-06-11 09:11:39'),
+(10, 'App\\Models\\User', 113, 'Access Token', 'd0c5ac641a254acf90d2e01dd0877089047309bd447d143bc8e6d86e3a36139a', '[\"*\"]', '2024-06-12 09:38:24', NULL, '2024-06-12 08:35:25', '2024-06-12 09:38:24');
 
 -- --------------------------------------------------------
 
@@ -193,7 +209,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'Bailey McClure MD', 'pwillms@example.net', '2024-06-10 07:01:03', '$2y$12$NDZF84cjo4c1vvLIvBUAHucpOcVpGFbgEDVvpu9nTyHLoMTb4/ZMC', '905jd9LPKa', '2024-06-10 07:01:03', '2024-06-10 07:01:03'),
-(3, 'Prof. Deonte Schaden DDS', 'davis.marcus@example.org', '2024-06-10 07:01:03', '$2y$12$NDZF84cjo4c1vvLIvBUAHucpOcVpGFbgEDVvpu9nTyHLoMTb4/ZMC', 'f9ZMXAwTMj', '2024-06-10 07:01:03', '2024-06-10 07:01:03'),
 (4, 'Avery Aufderhar', 'casper.lou@example.net', '2024-06-10 07:01:03', '$2y$12$NDZF84cjo4c1vvLIvBUAHucpOcVpGFbgEDVvpu9nTyHLoMTb4/ZMC', 'GdZWAttd9w', '2024-06-10 07:01:03', '2024-06-10 07:01:03'),
 (5, 'Dion Pfeffer', 'erik.von@example.org', '2024-06-10 07:01:03', '$2y$12$NDZF84cjo4c1vvLIvBUAHucpOcVpGFbgEDVvpu9nTyHLoMTb4/ZMC', 'iHKTVkOIDA', '2024-06-10 07:01:03', '2024-06-10 07:01:03'),
 (6, 'Ludwig Bergnaum', 'romaine.abshire@example.org', '2024-06-10 07:01:03', '$2y$12$NDZF84cjo4c1vvLIvBUAHucpOcVpGFbgEDVvpu9nTyHLoMTb4/ZMC', 'MM7I3u00ib', '2024-06-10 07:01:03', '2024-06-10 07:01:03'),
@@ -301,7 +316,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (108, 'London Frami Jr.', 'christopher.jaskolski@example.net', '2024-06-10 08:33:56', '$2y$12$L20vA4AevHZ7wD1frcmbKulmQKLp45rh4aMIwIxg/P62G8VArCDXq', 'C9pQxWsjlv', '2024-06-10 08:33:57', '2024-06-10 08:33:57'),
 (109, 'Jana Davis', 'narciso25@example.org', '2024-06-10 08:33:56', '$2y$12$L20vA4AevHZ7wD1frcmbKulmQKLp45rh4aMIwIxg/P62G8VArCDXq', 'tbfe9WExIp', '2024-06-10 08:33:57', '2024-06-10 08:33:57'),
 (110, 'Camilla McDermott DVM', 'keanu.rau@example.com', '2024-06-10 08:33:56', '$2y$12$L20vA4AevHZ7wD1frcmbKulmQKLp45rh4aMIwIxg/P62G8VArCDXq', 'sENVLHLxMu', '2024-06-10 08:33:57', '2024-06-10 08:33:57'),
-(111, 'Pamela Collier', 'diamond71@example.org', '2024-06-10 08:33:56', '$2y$12$L20vA4AevHZ7wD1frcmbKulmQKLp45rh4aMIwIxg/P62G8VArCDXq', 'azbtThat6g', '2024-06-10 08:33:57', '2024-06-10 08:33:57');
+(111, 'Pamela Collier', 'diamond71@example.org', '2024-06-10 08:33:56', '$2y$12$L20vA4AevHZ7wD1frcmbKulmQKLp45rh4aMIwIxg/P62G8VArCDXq', 'azbtThat6g', '2024-06-10 08:33:57', '2024-06-10 08:33:57'),
+(113, 'Chris', 'chrisobt@outlook.net', NULL, '$2y$12$8.jH.JIfEY5xINjsPR/8P.ZVaJv0SYPz.Z/hOwnkGwoUzFXBoDOHa', NULL, '2024-06-11 09:22:53', '2024-06-11 09:22:53'),
+(114, 'Chris', 'chrisobt@outlook', NULL, '$2y$12$jyblX12N4x/zQixdiSO4yuwPlTfTBGeQXXmPkJj5Hy2rgqwLn.K7K', NULL, '2024-06-11 09:26:46', '2024-06-11 09:26:46');
 
 --
 -- Indexes for dumped tables
@@ -313,6 +330,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `favorite`
+--
+ALTER TABLE `favorite`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `favorite_user_id_foreign` (`user_id`),
+  ADD KEY `favorite_movie_id_foreign` (`movie_id`);
 
 --
 -- Indexes for table `migrations`
@@ -358,10 +383,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `favorite`
+--
+ALTER TABLE `favorite`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `movies`
@@ -373,13 +404,24 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `favorite`
+--
+ALTER TABLE `favorite`
+  ADD CONSTRAINT `favorite_movie_id_foreign` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `favorite_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
