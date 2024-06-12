@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\User;
+
 
 class MovieController extends Controller
 {
@@ -50,4 +52,18 @@ class MovieController extends Controller
 
         return response()->json($data);
     }
+
+    public function add_favorite(request $request) {
+        $request->validate([
+            'user_id' =>'required',
+            'movie_id' =>'required',
+        ]);
+
+        $user = User::find($request->get('user_id'));
+        $movie = Movie::find($request->get('movie_id'));  
+
+        $user->favorites()->attach($movie);
+
+    }
+
 }
