@@ -11,16 +11,14 @@ use App\Models\Serie;
 class serieController extends Controller
 {
     // return all series in database
-    // route: api/series/all
     public function all() {
         $data = Serie::all();
         return response()->json($data);
     }
 
     // return all series sorted by creation data
-    // route: api/series/latest
     public function latest() {
-        $data = Serie::orderBy('created_at', 'desc')->get();
+        $data = Serie::orderBy('created_at', 'DESC')->take(5)->get(); // return 5
         return response()->json($data);
     }
 
@@ -36,7 +34,6 @@ class serieController extends Controller
 
     // for infinity scroll, je kan page nummer meegeven en de arrays combineren 
     // in de frontend
-    // route: api/series/page
     public function page_control(Request $request) {
 
         $request->validate([

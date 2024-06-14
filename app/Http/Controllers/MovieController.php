@@ -19,7 +19,7 @@ class MovieController extends Controller
     // return all movies sorted by creation data
     // route: api/movies/latest
     public function latest() {
-        $data = Movie::orderBy('created_at', 'desc')->get();
+        $data = Movie::orderBy('created_at', 'DESC')->take(5)->get(); // return only 5
         return response()->json($data);
     }
 
