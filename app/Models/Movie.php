@@ -9,6 +9,6 @@ class Movie extends Model
 {
     use HasFactory;
     public function favoritedBy() {     
-        return $this->belongsToMany(User::class, 'favorites')->withTimestamps(); 
+        return $this->belongsToMany(User::class, 'movie_favorites')->withTimestamps(); 
     }
 }

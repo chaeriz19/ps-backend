@@ -64,7 +64,7 @@ class MovieController extends Controller
 
         // check eerst of die al gafavorite is, zoja niet meer doen
 
-        $user->favorites()->attach($movie);
+        $user->movie_favorites()->attach($movie);
 
         // send positive json response
 
