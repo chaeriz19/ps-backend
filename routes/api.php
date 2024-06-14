@@ -17,9 +17,6 @@ Route::get('/movies/all', [MovieController::class, 'all'])->name('movies.all');
 Route::post('/movie/add-favorite', [MovieController::class, 'add_favorite'])->name('movies.add_favorite');
 Route::post('/serie/add-favorite', [SerieController::class, 'add_favorite'])->name('series.add_favorite');
 
-
-
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user/remove-favorite', [MovieController::class, 'remove_favorite'])->name('users.remove_favorite');
     Route::post('/user/get-favorite', [MovieController::class, 'get_favorites'])->name('users.get_favorites');

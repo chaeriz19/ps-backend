@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Serie;
+
 
 
 class serieController extends Controller
@@ -11,14 +13,14 @@ class serieController extends Controller
     // return all series in database
     // route: api/series/all
     public function all() {
-        $data = serie::all();
+        $data = Serie::all();
         return response()->json($data);
     }
 
     // return all series sorted by creation data
     // route: api/series/latest
     public function latest() {
-        $data = serie::orderBy('created_at', 'desc')->get();
+        $data = Serie::orderBy('created_at', 'desc')->get();
         return response()->json($data);
     }
 
@@ -29,7 +31,7 @@ class serieController extends Controller
             'search' => 'required|max:50'
         ]);
         $term = $request->search;
-        return response()->json(['data'=> serie::where('title', 'LIKE', "$term%")->get(), 'term'=> $request->search]);
+        return response()->json(['data'=> Serie::where('title', 'LIKE', "$term%")->get(), 'term'=> $request->search]);
     }
 
     // for infinity scroll, je kan page nummer meegeven en de arrays combineren 
@@ -44,7 +46,7 @@ class serieController extends Controller
         $page = $request->page;
         $perPage = 10;
 
-        $data = serie::orderBy('created_at', 'desc')
+        $data = Serie::orderBy('created_at', 'desc')
                     ->skip(($page - 1) * $perPage)
                     ->take($perPage)
                     ->get();
