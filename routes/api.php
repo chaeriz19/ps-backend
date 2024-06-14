@@ -11,7 +11,11 @@ use App\Http\Controllers\SerieController;
 // unprotected routes
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
 Route::post('/user/register', [AuthController::class, 'register'])->name('user.register');
-Route::get('/movies/all', [MovieController::class, 'all'])->name('movies.all');
+
+        // TODO: Remove in final product.
+        Route::get('/movies/all', [MovieController::class, 'all'])->name('movies.all');
+        Route::get('/series/all', [SerieController::class, 'all'])->name('series.all');
+
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
