@@ -7,18 +7,19 @@ use App\Models\User;
 use App\Models\Serie;
 
 
-
 class serieController extends Controller
 {
     // return all series in database
+    // route: api/series/all
     public function all() {
-        $data = Serie::all();
+        $data = serie::all();
         return response()->json($data);
     }
 
     // return all series sorted by creation data
+    // route: api/series/latest
     public function latest() {
-        $data = Serie::orderBy('created_at', 'DESC')->take(5)->get(); // return 5
+        $data = serie::orderBy('created_at', 'desc')->get();
         return response()->json($data);
     }
 
@@ -29,11 +30,12 @@ class serieController extends Controller
             'search' => 'required|max:50'
         ]);
         $term = $request->search;
-        return response()->json(['data'=> Serie::where('title', 'LIKE', "$term%")->get(), 'term'=> $request->search]);
+        return response()->json(['data'=> serie::where('title', 'LIKE', "$term%")->get(), 'term'=> $request->search]);
     }
 
     // for infinity scroll, je kan page nummer meegeven en de arrays combineren 
     // in de frontend
+    // route: api/series/page
     public function page_control(Request $request) {
 
         $request->validate([
@@ -43,7 +45,7 @@ class serieController extends Controller
         $page = $request->page;
         $perPage = 10;
 
-        $data = Serie::orderBy('created_at', 'desc')
+        $data = serie::orderBy('created_at', 'desc')
                     ->skip(($page - 1) * $perPage)
                     ->take($perPage)
                     ->get();
