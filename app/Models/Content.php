@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Content extends Model
 {
     use HasFactory;
-    public function favoritedBy() {     
-        return $this->belongsToMany(User::class, 'movie_favorites')->withTimestamps(); 
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }

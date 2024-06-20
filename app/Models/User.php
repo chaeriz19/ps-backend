@@ -12,14 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function movie_favorites() {
-        return $this->belongsToMany(Movie::class, 'movie_favorite')->withTimestamps();
-    }
-
-    public function serie_favorites() {
-        return $this->belongsToMany(Serie::class, 'serie_favorite')->withTimestamps();
-    }
-
     protected $fillable = [
         'name',
         'email',
@@ -35,4 +27,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function favorite() {
+        return $this->hasMany(Favorite::class);
+
+    }
+
+    public function favorites() {
+        return $this->belongsToMany(Content::class, 'favorites');
+    }
 }

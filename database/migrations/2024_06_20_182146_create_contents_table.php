@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('movies', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->id();
-
             $table->string('title');
-            $table->string('movie_type');
-            $table->unsignedSmallInteger('year');
-            $table->unsignedSmallInteger('minutes');
+            $table->text('description');
+
+            $table->enum('content', ['Serie', 'Movie']);
+
+            // depending on if its a show or film, its length in minutes or amount of episodes
+            $table->integer('length')->nullable();
+            $table->integer('episodes')->nullable();
 
             $table->timestamps();
         });
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('movies');
+        Schema::dropIfExists('contents');
     }
 };

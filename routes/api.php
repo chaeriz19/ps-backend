@@ -4,36 +4,35 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // import controllers
-use App\Http\Controllers\MovieController;
+
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\SerieController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\FavoriteController;
+// TODO:
+
+// search route
+// user/favorites
+// user/favorite-shows
+// user/favorite-movies
+// user/unfavorite
+
 
 // unprotected routes
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
 Route::post('/user/register', [AuthController::class, 'register'])->name('user.register');
 
-        // TODO: Remove in final product.
-        Route::get('/movies/all', [MovieController::class, 'all'])->name('movies.all');
-        Route::get('/series/all', [SerieController::class, 'all'])->name('series.all');
-
+// get all series or movies
+Route::get('/all/{type}', [ContentController::class, 'get_all'])->name('get.all');
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
     
     // User
+    Route::post('/user/favorite', [FavoriteController::class, 'favorite'])->name('user.favorite');
+    Route::get('/user/favorites', [ContentController::class, 'favorites'])->name('user.favorites');
     Route::post('/user/delete', [AuthController::class, 'delete'])->name('users.delete');
 
-    // Movies
-    Route::post('/movie/add-favorite', [MovieController::class, 'add_favorite'])->name('movies.add_favorite');
-    Route::get('/movies/latest', [MovieController::class, 'latest'])->name('movies.latest'); // last 5 movies added in DB
-    Route::post('/movies/page', [MovieController::class, 'page_control'])->name('movies.page_control');
-    Route::post('/movies/search', [MovieController::class, 'search'])->name('movies.search');
-    
-    // Series
-    Route::post('/series/add-favorite', [SerieController::class, 'add_favorite'])->name('series.add_favorite');
-    Route::get('/series/latest', [SerieController::class, 'latest'])->name('series.latest'); // last 5 series added in DB
-    Route::post('/series/search', [SerieController::class, 'search'])->name('series.search');
-
+    Route::post('/search', [ContentController::class, 'search'])->name('search');
 });
 
     
