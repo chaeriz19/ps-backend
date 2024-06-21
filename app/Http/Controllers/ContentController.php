@@ -37,4 +37,13 @@ class ContentController extends Controller
         return response()->json(['success' => true, 'data' => $data]);
         
     }
+
+    public function getContentById($id) {
+        $content = Content::find($id);
+        if ($content) {
+            return response()->json(['success' => true, 'data' => $content]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Content not found'], 404);
+        }
+    }
 }

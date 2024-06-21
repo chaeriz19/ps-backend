@@ -1,4 +1,3 @@
-
 - endpoint for details
 
 Frontend
