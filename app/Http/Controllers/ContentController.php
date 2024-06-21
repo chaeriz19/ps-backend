@@ -26,4 +26,9 @@ class ContentController extends Controller
         $term = $request->term;
         return response()->json(['data'=> Content::where('title', 'LIKE', "$term%")->get(), 'term'=> $request->search]);
     }
+
+    public function latest() {
+        $data = Content::orderBy('created_at', 'DESC')->take(25)->get();
+        return response()->json(['success' => true, 'data' => $data]);
+    }
 }

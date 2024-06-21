@@ -15,6 +15,8 @@ Route::post('/user/register', [AuthController::class, 'register'])->name('user.r
 
 // get all series or movies
 Route::get('/all/{type}', [ContentController::class, 'get_all'])->name('get.all');
+Route::get('/latest', [ContentController::class, 'latest'])->name('get.latest');
+
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
