@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
 
+            $table->enum('genre', ['Horror', 'Comedy', 'Animation', 'Thriller', 'Action', 'Adventure', 'Romance', 'Drama']);
+
             $table->enum('content', ['Serie', 'Movie']);
 
             // depending on if its a show or film, its length in minutes or amount of episodes

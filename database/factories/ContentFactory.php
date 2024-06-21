@@ -22,11 +22,14 @@ class ContentFactory extends Factory
     public function definition(): array
     {
         $contentType = $this->faker->randomElement(['Serie', 'Movie']);
+        $randomGenre = $this->faker->randomElement(['Horror', 'Comedy', 'Animation', 'Thriller', 'Action', 'Adventure', 'Romance', 'Drama']);
 
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'content' => $contentType,
+            'genre' => $randomGenre,
+
             'length' => $contentType === 'Movie' ? $this->faker->numberBetween(60, 180) : null,
             'episodes' => $contentType === 'Serie' ? $this->faker->numberBetween(1, 20) : null,
         ];
