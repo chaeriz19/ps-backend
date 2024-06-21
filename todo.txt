@@ -2,6 +2,7 @@
 - sorting by genres
 - endpoint for details
 - endpoint voor latest added
+- unfavrite
 
 Frontend
 

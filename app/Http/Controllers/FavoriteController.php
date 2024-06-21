@@ -25,4 +25,28 @@ class FavoriteController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Added to favorites successfully'], 200);
     }
+
+    public function un_favorite(request $request) {
+        $request->validate([
+            'content_id' =>'required',
+        ]);
+        $user = auth('sanctum')->user();
+        $contentId = $request->input('content_id');
+
+        if ($user->favorites()->where('content_id', $contentId)->exists()) {
+            $user->favorites()->where('content_id', $contentId)->delete();
+            return response()->json([
+               'success' => true,
+               'message' => 'User unfavorited serie successfully',
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'User doesnt have a favorite with this ID',
+             ]);
+        }
+
+    }
 }
+
+

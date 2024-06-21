@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // User
     Route::post('/user/favorite', [FavoriteController::class, 'favorite'])->name('user.favorite');
     Route::get('/user/favorites', [ContentController::class, 'favorites'])->name('user.favorites');
+    Route::post('/user/unfavorite', [FavoriteController::class, 'un_favorite'])->name('user.unfavorite');
     Route::post('/user/delete', [AuthController::class, 'delete'])->name('users.delete');
 
     Route::post('/search', [ContentController::class, 'search'])->name('search');
