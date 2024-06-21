@@ -1,8 +1,7 @@
-- IN content add genres (horror, comedy, cartoon)
+
 - sorting by genres
 - endpoint for details
 - endpoint voor latest added
-- unfavrite
 
 Frontend
 
