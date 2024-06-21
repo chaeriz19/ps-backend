@@ -31,4 +31,10 @@ class ContentController extends Controller
         $data = Content::orderBy('created_at', 'DESC')->take(25)->get();
         return response()->json(['success' => true, 'data' => $data]);
     }
+
+    public function sort_genre(Request $request, $genre) {
+        $data = Content::where('genre', ucfirst($genre))->get();
+        return response()->json(['success' => true, 'data' => $data]);
+        
+    }
 }

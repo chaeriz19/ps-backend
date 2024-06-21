@@ -1,5 +1,4 @@
 
-- sorting by genres
 - endpoint for details
 
 Frontend
