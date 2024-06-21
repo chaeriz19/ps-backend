@@ -97,4 +97,33 @@ class AuthController extends Controller
             ], 404);
         }
     }
+
+    public function logout(Request $request) {
+    $user = auth('sanctum')->user();
+
+    if ($user) {
+        // Check of de user een token heeft
+        if ($user->tokens()->exists()) {
+            // Verweider als die een token heeft
+            $user->tokens()->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'User logged out successfully',
+            ]);
+        } else {
+            // Als de user geen token heeft
+            return response()->json([
+                'success' => false,
+                'message' => 'User does not have any active tokens',
+            ], 400);
+        }
+    } else {
+        // Als die niet is ingelogd
+        return response()->json([
+            'success' => false,
+            'message' => 'User is not authenticated',
+        ], 401);
+    }
+    }
+
 }
