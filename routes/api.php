@@ -8,14 +8,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\FavoriteController;
-// TODO:
-
-// search route
-// user/favorites
-// user/favorite-shows
-// user/favorite-movies
-// user/unfavorite
-
 
 // unprotected routes
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
