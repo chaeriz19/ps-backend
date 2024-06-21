@@ -1,8 +1,4 @@
-- endpoint for details
+TODO:
 
-Frontend
-
-- inlog / authenticattie
-- sorting by genre
-- sorting
-- searching
+- UITlog endpoint
+     logout function, remove authentication token if user has one (check if user has a token)
