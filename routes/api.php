@@ -19,8 +19,8 @@ Route::get('/all/{type}', [ContentController::class, 'get_all'])->name('get.all'
 Route::get('/latest', [ContentController::class, 'latest'])->name('get.latest');
 Route::get('/genre/{genre}', [ContentController::class, 'sort_genre'])->name('get.latest');
 
-Route::post('/user/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
-Route::post('/user/unfavorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+//Route::post('/user/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
+//Route::post('/user/unfavorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 
 
 // protected routes
@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // User
     Route::post('/user/delete', [AuthController::class, 'delete'])->name('users.delete');
     Route::post('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
-    
+    Route::post('/user/toggle', [FavoriteController::class, 'togglefavorite'])->name('favorite.togglefavorite');
 
     Route::post('/search', [ContentController::class, 'search'])->name('search');
 });
