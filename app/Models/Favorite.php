@@ -5,9 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Content;
-use App\Models\User;
-
 class Favorite extends Model
 {
     use HasFactory;
@@ -17,11 +14,13 @@ class Favorite extends Model
         'content_id',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function content() {
+    public function content()
+    {
         return $this->belongsTo(Content::class);
     }
 }

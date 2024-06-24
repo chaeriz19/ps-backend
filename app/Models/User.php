@@ -28,12 +28,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function favorite() {
+    public function favorites()
+    {
         return $this->hasMany(Favorite::class);
-
-    }
-
-    public function favorites() {
-        return $this->belongsToMany(Content::class, 'favorites');
     }
 }

@@ -19,15 +19,14 @@ Route::get('/all/{type}', [ContentController::class, 'get_all'])->name('get.all'
 Route::get('/latest', [ContentController::class, 'latest'])->name('get.latest');
 Route::get('/genre/{genre}', [ContentController::class, 'sort_genre'])->name('get.latest');
 
+Route::post('/user/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
+Route::post('/user/unfavorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
     
     // User
-    Route::post('/user/favorite', [FavoriteController::class, 'favorite'])->name('user.favorite');
-    Route::get('/user/favorites', [ContentController::class, 'favorites'])->name('user.favorites');
-    Route::post('/user/unfavorite', [FavoriteController::class, 'un_favorite'])->name('user.unfavorite');
     Route::post('/user/delete', [AuthController::class, 'delete'])->name('users.delete');
     Route::post('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
     
