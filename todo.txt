@@ -1,7 +1,5 @@
 TODO:
 
-Togle favorite, favorite en unfavorite in 1 functie
-
 Het veranderen van user details, passwords mail etc
 
 Alle routes hebben auth nodig
