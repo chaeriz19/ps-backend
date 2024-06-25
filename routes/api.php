@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
     Route::post('/user/toggle', [FavoriteController::class, 'togglefavorite'])->name('favorite.togglefavorite');
     Route::post('/user/favorites', [FavoriteController::class, 'showfavorites'])->name('favorite.showfavorites');
+    Route::post('/user/check', [FavoriteController::class, 'checkfavorite'])->name('user.checkfavorite');
 
     Route::post('/search', [ContentController::class, 'search'])->name('search');
 });

@@ -68,4 +68,21 @@ class FavoriteController extends Controller
             'data' => $favoritedContent
         ]);
     }
+
+    public function checkfavorite(Request $request)
+    {
+        $user = auth('sanctum')->user();
+        $favorite = $user->favorites()->where('content_id', $request->content_id)->first();
+        if ($favorite) {
+            return response()->json([
+               'status' => true,
+                'data' => true
+            ]);
+        } else {
+            return response()->json([
+               'status' => true,
+                'data' => false
+            ]);
+        }
+    }
 }
