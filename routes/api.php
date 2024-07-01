@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::post('/content/create', [ContentController::class, 'create_content'])->name('content.create');
     Route::post('/content/delete', [ContentController::class, 'delete_content'])->name('content.delete');
-    Route::get('/content/all', [ContentController::class, 'all'])->name('content.all');
+    Route::post('/content/all', [ContentController::class, 'all'])->name('content.all');
 
 
     Route::post('/user/delete', [AuthController::class, 'delete'])->name('user.delete');
