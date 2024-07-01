@@ -70,13 +70,6 @@ class ContentController extends Controller
             ], 422);
         }
 
-        if (Content::where('title', $request->title)->exists()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'This content already exists.',
-            ], 422);
-        }
-
         $movie = Content::create([
             'title' => $request->title,
             'description' => $request->description,
