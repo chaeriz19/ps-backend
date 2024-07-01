@@ -155,6 +155,17 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getUsers(Request $request) {
+        $request->validate([
+            'page' => 'required',
+        ]);
+        $data = User::paginate(10);
+        return response()->json([
+            'success' => true,
+            'user' => $data,
+        ]);
+    }
+
     public function getUser() {
         $user = Auth::user();
 

@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Content;
-
+use Illuminate\Support\Facades\Validator;
 class ContentController extends Controller
 {
     public function get_all(Request $request, $type) {
         $data = Content::where('content', ucfirst($type))->get();
         return response()->json(['success' => true, 'data' => $data]);
+    }
+
+    public function all(Request $request) {
+        $data = Content::all();
+        return response()->json(['success' => true, 'data' => $data]);
+
     }
 
     public function favorites() {
@@ -45,5 +51,63 @@ class ContentController extends Controller
         } else {
             return response()->json(['success' => false, 'message' => 'Content not found'], 404);
         }
+    }
+
+    public function create_content(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            'genre' => 'required|max:255',
+            'content' => 'required|max:255',
+            'length' => 'max:255',
+            'episodes' => 'max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->first()
+            ], 422);
+        }
+
+        if (Content::where('title', $request->title)->exists()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This content already exists.',
+            ], 422);
+        }
+
+        $movie = Content::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'genre' => $request->genre,
+            'content' => $request->content,
+            'length' => $request->length,
+            'episodes' => $request->episodes,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => $movie,
+        ]);
+    }
+
+    public function delete_content(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'content_id' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->first()
+            ], 422);
+        }
+
+        $data = Content::where('id', $request->content_id)->delete();
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+        ]);
     }
 }

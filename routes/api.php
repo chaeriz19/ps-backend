@@ -21,7 +21,11 @@ Route::get('/genre/{genre}', [ContentController::class, 'sort_genre'])->name('ge
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
     
-    // User
+    Route::post('/content/create', [ContentController::class, 'create_content'])->name('content.create');
+    Route::post('/content/delete', [ContentController::class, 'delete_content'])->name('content.delete');
+    Route::get('/content/all', [ContentController::class, 'all'])->name('content.all');
+
+
     Route::post('/user/delete', [AuthController::class, 'delete'])->name('user.delete');
     Route::post('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
     Route::post('/user/toggle', [FavoriteController::class, 'togglefavorite'])->name('favorite.togglefavorite');
