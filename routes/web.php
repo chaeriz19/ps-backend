@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/csrf', function() {
+        return response()->json(['csrfToken' => csrf_token()]);
+    });
+});
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
